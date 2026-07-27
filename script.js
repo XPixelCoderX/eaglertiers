@@ -1,4 +1,13 @@
+// ===== CONFIGURATION =====
+const PROXY_URL = "https://proxy.corsfix.com/?";
 const API_BASE = "https://eaglertiers.com/api";
+
+function apiUrl(path) {
+  const full = `${API_BASE}${path}`;
+  const target = full.replace(/^https?:\/\//, '');
+  return PROXY_URL ? `${PROXY_URL}${target}` : full;
+}
+// =========================
 
 const GAMEMODES = [
   { id: "overall", label: "Overall", icon: "assets/gamemodes/overall.png" },
@@ -221,7 +230,7 @@ async function openProfileModal(username) {
       return;
     }
 
-    const response = await fetch(`${API_BASE}/players/${encodeURIComponent(username)}`, {
+    const response = await fetch(apiUrl(`/players/${encodeURIComponent(username)}`), {
       headers: { Accept: "application/json" },
     });
     if (!response.ok) {
@@ -485,8 +494,8 @@ async function loadRankings() {
 
   const endpoint =
     state.gamemode === "overall"
-      ? `${API_BASE}/players?page=${state.page}`
-      : `${API_BASE}/rankings/${state.gamemode}?page=1&perPage=500`;
+      ? apiUrl(`/players?page=${state.page}`)
+      : apiUrl(`/rankings/${state.gamemode}?page=1&perPage=500`);
 
   try {
     const response = await fetch(endpoint, {
@@ -529,7 +538,7 @@ async function runSearch(query) {
   activeSearchController = new AbortController();
 
   try {
-    const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}`, {
+    const response = await fetch(apiUrl(`/search?q=${encodeURIComponent(query)}`), {
       headers: { Accept: "application/json" },
       signal: activeSearchController.signal,
     });
