@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EaglerTiers - Rankings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-bg"></div>
+
+    <header class="topbar glass-panel">
+      <div class="logo-wrap">
+        <img src="assets/logo.png" alt="Eagler Tiers" class="logo" />
+      </div>
+
+      <div class="search-shell" id="searchShell">
+        <input id="searchInput" type="text" placeholder="Search players..." autocomplete="off" />
+        <div id="searchDropdown" class="search-dropdown hidden"></div>
+      </div>
+
+      <div class="actions">
+        <a href="https://discord.gg/tMeKxeD3Va" class="btn btn-discord" target="_blank" rel="noopener noreferrer">
+          <img src="assets/discord.png" alt="Discord" />
+          Get Tier Tested
+        </a>
+      </div>
+    </header>
+
+    <nav class="tabs glass-panel" id="tabs"></nav>
+
+    <main class="content">
+      <div class="list-head">
+        <h1 id="viewTitle">Overall Rankings</h1>
+        <div id="statusLabel" class="status-label"></div>
+      </div>
+
+      <div id="loadingState" class="loading-state hidden">
+        <div class="spinner"></div>
+        <span>Loading rankings...</span>
+      </div>
+
+      <div id="errorState" class="error-state hidden"></div>
+
+      <section id="rankingList" class="ranking-list"></section>
+
+      <div id="pagination" class="pagination hidden">
+        <button id="prevPage" class="page-btn">Previous</button>
+        <span id="pageInfo"></span>
+        <button id="nextPage" class="page-btn">Next</button>
+      </div>
+    </main>
+
+    <div id="profileOverlay" class="profile-overlay hidden" aria-hidden="true">
+      <section id="profileModal" class="profile-modal glass-panel" role="dialog" aria-modal="true" aria-labelledby="profileUsername">
+        <button id="profileCloseBtn" class="close-btn" aria-label="Close profile">x</button>
+
+        <div id="profileLoading" class="loading-state">
+          <div class="spinner"></div>
+          <span>Loading profile...</span>
+        </div>
+
+        <div id="profileError" class="error-state hidden"></div>
+
+        <div id="profileContent" class="hidden">
+          <div class="profile-header">
+            <div class="profile-avatar-circle">
+              <img id="profileAvatar" src="" alt="Player avatar" />
+            </div>
+            <h1 id="profileUsername"></h1>
+            <p id="profileRegion" class="profile-region"></p>
+            <p id="profileTopPoints" class="profile-top-points"></p>
+          </div>
+
+          <h3 class="profile-section-title">Position</h3>
+          <div class="position-panel compact">
+            <span id="profilePosition" class="position-rank">#-</span>
+          </div>
+
+          <h3 class="profile-section-title">Tiers</h3>
+          <div id="profileTiersPanel" class="profile-tiers-panel">
+            <div id="profileTiers" class="profile-tier-circles"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"3ca610e0ae1c4e228ca823b30a710d49","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>
