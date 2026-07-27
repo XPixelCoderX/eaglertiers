@@ -4,8 +4,7 @@ const API_BASE = "https://eaglertiers.com/api";
 
 function apiUrl(path) {
   const full = `${API_BASE}${path}`;
-  const target = full.replace(/^https?:\/\//, '');
-  return PROXY_URL ? `${PROXY_URL}${target}` : full;
+  return PROXY_URL ? `${PROXY_URL}${full}` : full;
 }
 // =========================
 
