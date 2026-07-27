@@ -1,3 +1,5 @@
+const API_BASE = "https://eaglertiers.com/api";
+
 const GAMEMODES = [
   { id: "overall", label: "Overall", icon: "assets/gamemodes/overall.png" },
   { id: "vanilla", label: "Vanilla", icon: "assets/gamemodes/smaller-vanilla-pvp.png" },
@@ -219,7 +221,7 @@ async function openProfileModal(username) {
       return;
     }
 
-    const response = await fetch(`/api/players/${encodeURIComponent(username)}`, {
+    const response = await fetch(`${API_BASE}/players/${encodeURIComponent(username)}`, {
       headers: { Accept: "application/json" },
     });
     if (!response.ok) {
@@ -483,8 +485,8 @@ async function loadRankings() {
 
   const endpoint =
     state.gamemode === "overall"
-      ? `/api/players?page=${state.page}`
-      : `/api/rankings/${state.gamemode}?page=1&perPage=500`;
+      ? `${API_BASE}/players?page=${state.page}`
+      : `${API_BASE}/rankings/${state.gamemode}?page=1&perPage=500`;
 
   try {
     const response = await fetch(endpoint, {
@@ -527,7 +529,7 @@ async function runSearch(query) {
   activeSearchController = new AbortController();
 
   try {
-    const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
+    const response = await fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}`, {
       headers: { Accept: "application/json" },
       signal: activeSearchController.signal,
     });
